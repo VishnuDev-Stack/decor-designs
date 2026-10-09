@@ -8,7 +8,7 @@ export default function Hero() {
       <div className="hero-content">
         <span className="eyebrow hero-anim" style={{ '--d': '0.1s' }}>
           <span className="eyebrow-line" aria-hidden="true" />
-          Residential Interiors &amp; Civil Works
+          <span className="hide-xs">Residential </span>Interiors &amp; Civil Works
         </span>
         <h1 className="hero-anim" style={{ '--d': '0.25s' }}>
           Designing Beautiful Spaces.

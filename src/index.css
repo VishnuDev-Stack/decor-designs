@@ -620,19 +620,28 @@ h3 { font-size: 1.5rem; }
 .tst-controls { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-top: 34px; }
 .tst-count { font-family: var(--font-head); font-size: 1.1rem; color: var(--muted); min-width: 70px; }
 .tst-count b { font-size: 1.6rem; font-weight: 600; color: var(--charcoal); }
-.tst-dots { display: flex; gap: 10px; align-items: center; }
+.tst-dots { display: flex; align-items: center; }
+/* Each dot is a 44px-tall touch target; the visible pill is drawn by ::before / ::after */
 .tst-dot {
+  --pill: 10px;
   position: relative;
-  width: 10px; height: 10px;
+  width: calc(var(--pill) + 14px); height: 44px;
+  display: grid; place-items: center;
+  transition: width 0.4s var(--ease);
+}
+.tst-dot::before, .tst-dot::after {
+  content: "";
+  grid-area: 1 / 1;
+  width: var(--pill); height: 10px;
   border-radius: 10px;
-  background: rgba(18,18,18,0.18);
-  overflow: hidden;
   transition: width 0.4s var(--ease), background 0.3s;
 }
-.tst-dot.is-active { width: 54px; background: rgba(197,160,89,0.3); }
+.tst-dot::before { background: rgba(18,18,18,0.18); }
+.tst-dot::after { display: none; }
+.tst-dot.is-active { --pill: 54px; }
+.tst-dot.is-active::before { background: rgba(197,160,89,0.3); }
 .tst-dot.is-active::after {
-  content: "";
-  position: absolute; inset: 0;
+  display: block;
   background: var(--gold);
   transform-origin: left;
   animation: tstProgress var(--autoplay) linear forwards;
@@ -999,7 +1008,7 @@ h3 { font-size: 1.5rem; }
   .tst-controls { margin-top: 24px; gap: 12px; }
   .tst-count { min-width: 0; font-size: 0.95rem; }
   .tst-count b { font-size: 1.3rem; }
-  .tst-dot.is-active { width: 36px; }
+  .tst-dot.is-active { --pill: 36px; }
   .tst-arrow { width: 44px; height: 44px; }
 
   /* CTA */
@@ -1063,6 +1072,95 @@ h3 { font-size: 1.5rem; }
   .brand-sub { letter-spacing: 0.4em; }
   .contact-details { grid-template-columns: 1fr; }
   .service-card { flex-basis: 85%; }
+}
+
+/* =================================================================
+   MOBILE POLISH — touch targets, legibility, small & landscape screens
+   ================================================================= */
+html { -webkit-tap-highlight-color: transparent; }
+.contact-grid > *, .about-grid > *, .footer-grid > * { min-width: 0; }
+.contact-details a, .footer-col a { overflow-wrap: anywhere; }
+.btn.btn:active { transform: scale(0.98); } /* beats the touch :hover reset below */
+.contact-socials a, .footer-socials a { display: inline-block; padding: 12px 0; }
+
+/* Touch devices: no sticky hover lifts after a tap */
+@media (hover: none) {
+  .service-card.is-visible:hover, .why-item.is-visible:hover, .btn:hover { transform: none; }
+  .service-card:hover .service-media img { transform: none; }
+}
+
+@media (max-width: 992px) {
+  .nav-toggle { width: 44px; height: 44px; padding: 0; align-items: center; justify-content: center; margin-right: -8px; }
+}
+
+@media (max-width: 768px) {
+  .navbar { padding-left: max(20px, env(safe-area-inset-left)); padding-right: max(20px, env(safe-area-inset-right)); }
+  body { padding-bottom: calc(60px + env(safe-area-inset-bottom)); }
+  .floating-actions { bottom: calc(76px + env(safe-area-inset-bottom)); }
+
+  /* Legible small labels (≥ 11px) */
+  .eyebrow { font-size: 0.72rem; }
+  .hero .eyebrow { font-size: 0.68rem; letter-spacing: 0.24em; }
+  .project-tag { font-size: 0.72rem; letter-spacing: 0.14em; }
+  .tst-role, .tst-tag { font-size: 0.7rem; }
+  .ci-label { font-size: 0.72rem; }
+  .filter-btn { font-size: 0.74rem; min-height: 44px; }
+  .footer-col a, .footer-col span { padding: 9px 0; }
+  .mobile-bar a:active { background: rgba(249,247,243,0.08); }
+  .mobile-bar .mb-quote:active { filter: brightness(0.94); }
+}
+
+@media (max-width: 480px) {
+  .btn { white-space: normal; text-align: center; line-height: 1.35; letter-spacing: 0.14em; }
+}
+
+@media (max-width: 420px) {
+  .hide-xs { display: none; }
+}
+
+/* Very narrow phones: tab-bar style action bar */
+@media (max-width: 360px) {
+  .container { padding: 0 16px; }
+  .services-grid { margin: 0 -16px; padding-inline: 16px; }
+  .project-filters { margin-inline: -16px; padding-inline: 16px; }
+  .mobile-bar { grid-template-columns: repeat(3, 1fr); }
+  .mobile-bar a { flex-direction: column; gap: 4px; font-size: 0.72rem; letter-spacing: 0.06em; }
+  .hero h1 { font-size: clamp(2.3rem, 12vw, 2.7rem); }
+  .tst-arrow { width: 44px; height: 44px; }
+  .contact-form { padding: 24px 16px; }
+  .btn { letter-spacing: 0.1em; padding-inline: 22px; }
+}
+
+/* Phones in landscape: short screens */
+@media (max-height: 500px) and (orientation: landscape) {
+  :root { --nav-h: 58px; }
+  .navbar.is-scrolled { --nav-h: 54px; }
+  body { padding-bottom: calc(46px + env(safe-area-inset-bottom)); }
+  .mobile-bar a { height: 46px; flex-direction: row; font-size: 0.72rem; }
+  .floating-actions { bottom: calc(58px + env(safe-area-inset-bottom)); }
+
+  .hero { min-height: auto; align-items: center; padding: calc(var(--nav-h) + 14px) max(5%, env(safe-area-inset-left)) 40px; }
+  .hero h1 { font-size: clamp(1.9rem, 5.6vw, 2.7rem); margin: 8px 0 10px; }
+  .hero-sub { max-width: 560px; font-size: 0.95rem; line-height: 1.55; }
+  .hero-ctas { flex-direction: row; align-items: center; margin-top: 16px; }
+  .hero-ctas .btn { width: auto; padding: 12px 26px; }
+  .hero-trust, .scroll-cue { display: none; }
+
+  /* Two-column menu so everything fits without scrolling */
+  .nav-links {
+    display: grid; grid-template-columns: 1fr 1fr; column-gap: 28px; align-content: start;
+    width: min(72vw, 520px); padding: calc(var(--nav-h) + 4px) max(28px, env(safe-area-inset-right)) 20px 28px;
+  }
+  .nav-links > a { font-size: 1.2rem; padding: 9px 0; }
+  .nav-links > a.nav-cta { grid-column: 1 / -1; margin-top: 16px; padding: 12px 18px; }
+  .drawer-contact { grid-column: 1 / -1; grid-auto-flow: column; justify-content: space-between; padding-top: 14px; }
+
+  .section { padding: 56px 0; }
+  .services-grid .service-card { flex-basis: 46%; }
+  .projects-grid { grid-template-columns: repeat(3, 1fr); }
+  .tst-slide { grid-template-columns: 0.9fr 1.1fr; }
+  .tst-media { aspect-ratio: auto; }
+  .lightbox-figure img { max-height: 58vh; }
 }
 
 /* ---------- Reduced motion ---------- */
