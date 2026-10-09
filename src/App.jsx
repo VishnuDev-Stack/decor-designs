@@ -1,5 +1,7 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
+import Marquee from './components/Marquee'
+import CtaBand from './components/CtaBand'
 import About from './components/About'
 import Services from './components/Services'
 import Projects from './components/Projects'
@@ -17,12 +19,14 @@ export default function App() {
       <Navbar />
       <main id="main">
         <Hero />
+        <Marquee />
         <About />
         <Services />
         <Projects />
         <WhyUs />
         <Process />
         <Testimonials />
+        <CtaBand />
         <Contact />
       </main>
       <Footer />

@@ -6,7 +6,7 @@ export default function About() {
     <section id="about" className="section about">
       <div className="container about-grid">
         <Reveal className="about-media">
-          <img src={images.dining} alt="Elegant residential living and dining space designed by Decor Designs" loading="lazy" />
+          <img src={images.dining} alt="Elegant residential living and dining space designed by Decor Designs" loading="lazy" decoding="async" width="1152" height="864" />
           <div className="about-media-frame" aria-hidden="true" />
           <div className="about-media-badge">
             <strong>10+</strong>

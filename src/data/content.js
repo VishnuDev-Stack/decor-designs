@@ -1,17 +1,19 @@
 // All site copy and business details live here, so content can be edited
 // without touching the components.
 
-const IMG = 'https://media.base44.com/images/public/6ac90e3e32653bfd16b1317d'
+// Optimised WebP photos in /public/images. Each has a "-sm" (800px) variant for cards.
+const img = (name) => `/images/${name}.webp`
+export const small = (src) => src.replace('.webp', '-sm.webp')
 
 export const images = {
-  living: `${IMG}/fe38aef70_generated_7485cd4b.png`,
-  livingAlt: `${IMG}/21a7f05ca_generated_93841075.png`,
-  dining: `${IMG}/634f3bf04_generated_cb023685.png`,
-  kitchen: `${IMG}/71205e58f_generated_010d0186.png`,
-  bedroom: `${IMG}/b2e69606a_generated_d73ad321.png`,
-  ceiling: `${IMG}/0c5ca4f18_generated_8ae4eca5.png`,
-  wardrobe: `${IMG}/289a39c43_generated_4ffc8b57.png`,
-  bathroom: `${IMG}/4f514c2d5_generated_b219fa3e.png`,
+  living: img('living'),
+  livingAlt: img('living-alt'),
+  dining: img('dining'),
+  kitchen: img('kitchen'),
+  bedroom: img('bedroom'),
+  ceiling: img('ceiling'),
+  wardrobe: img('wardrobe'),
+  bathroom: img('bathroom'),
 }
 
 // TODO: replace the placeholders below with the real business details.
@@ -89,7 +91,7 @@ export const processSteps = [
 
 // TODO: these are SAMPLE testimonials — replace with genuine client reviews before going live.
 export const testimonials = [
-  { quote: 'Decor Designs transformed our apartment into a warm, functional home. Every detail was considered and the finish quality exceeded our expectations.', name: 'Aarav & Meera', role: '3BHK Home Interior' },
-  { quote: 'From planning to handover, the team was transparent and punctual. Our modular kitchen is both beautiful and incredibly practical to use daily.', name: 'Priya Sharma', role: 'Modular Kitchen' },
-  { quote: 'Their attention to material quality and lighting completely changed how our home feels. Professional, creative and genuinely client-focused.', name: 'Rohan Verma', role: 'Complete Home Renovation' },
+  { quote: 'Decor Designs transformed our apartment into a warm, functional home. Every detail was considered and the finish quality exceeded our expectations.', name: 'Aarav & Meera', role: '3BHK Home Interior', img: images.dining },
+  { quote: 'From planning to handover, the team was transparent and punctual. Our modular kitchen is both beautiful and incredibly practical to use daily.', name: 'Priya Sharma', role: 'Modular Kitchen', img: images.kitchen },
+  { quote: 'Their attention to material quality and lighting completely changed how our home feels. Professional, creative and genuinely client-focused.', name: 'Rohan Verma', role: 'Complete Home Renovation', img: images.livingAlt },
 ]

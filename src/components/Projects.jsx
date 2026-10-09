@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import Reveal from './Reveal'
 import SectionHead from './SectionHead'
-import { projects } from '../data/content'
+import { projects, small } from '../data/content'
 
 const ALL = 'All'
 
@@ -61,7 +61,7 @@ export default function Projects() {
           {visible.map((p, i) => (
             <Reveal key={p.title} delay={(i % 4) * 80}>
               <button type="button" className="project-card" onClick={() => setOpenIndex(i)} aria-label={`View ${p.title}`}>
-                <img src={p.img} alt="" loading="lazy" />
+                <img src={small(p.img)} alt="" loading="lazy" decoding="async" />
                 <div className="project-overlay">
                   <span className="project-tag">{p.category}</span>
                   <h3>{p.title}</h3>

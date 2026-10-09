@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import Logo from './Logo'
-import { navLinks } from '../data/content'
+import { navLinks, site } from '../data/content'
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
@@ -70,6 +70,10 @@ export default function Navbar() {
         <a href="#contact" className="btn btn-primary nav-cta" onClick={close}>
           Free Consultation
         </a>
+        <div className="drawer-contact">
+          <a href={site.phoneHref}>{site.phoneDisplay}</a>
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+        </div>
       </nav>
 
       <div className={`nav-backdrop ${open ? 'is-open' : ''}`} onClick={close} aria-hidden="true" />

@@ -1,6 +1,6 @@
 import Reveal from './Reveal'
 import SectionHead from './SectionHead'
-import { services } from '../data/content'
+import { services, small } from '../data/content'
 
 export default function Services() {
   return (
@@ -14,7 +14,7 @@ export default function Services() {
           {services.map((s, i) => (
             <Reveal as="article" className="service-card" key={s.title} delay={(i % 4) * 90}>
               <div className="service-media">
-                <img src={s.img} alt={s.alt} loading="lazy" />
+                <img src={small(s.img)} alt={s.alt} loading="lazy" decoding="async" width="800" height="600" />
                 <span className="service-num">{String(i + 1).padStart(2, '0')}</span>
               </div>
               <div className="service-body">
