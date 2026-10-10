@@ -15,6 +15,7 @@ import FloatingActions from './components/FloatingActions'
 export default function App() {
   return (
     <>
+      <div className="scroll-progress" aria-hidden="true" />
       <a href="#main" className="skip-link">Skip to content</a>
       <Navbar />
       <main id="main">

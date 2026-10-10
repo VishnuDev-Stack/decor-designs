@@ -1,4 +1,5 @@
 import Reveal from './Reveal'
+import CountUp from './CountUp'
 import { highlights, images } from '../data/content'
 
 export default function About() {
@@ -9,7 +10,7 @@ export default function About() {
           <img src={images.dining} alt="Elegant residential living and dining space designed by Decor Designs" loading="lazy" decoding="async" width="1152" height="864" />
           <div className="about-media-frame" aria-hidden="true" />
           <div className="about-media-badge">
-            <strong>10+</strong>
+            <strong><CountUp end={10} suffix="+" /></strong>
             <span>Years of Craft</span>
           </div>
         </Reveal>
@@ -27,7 +28,7 @@ export default function About() {
             shaped around how you live every day.
           </p>
 
-          <div className="about-highlights">
+          <div className="about-highlights stagger">
             {highlights.map((h) => (
               <div className="highlight" key={h.title}>
                 <span className="highlight-icon" aria-hidden="true">{h.icon}</span>
