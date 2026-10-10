@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Reveal from './Reveal'
 import { services, site, whatsappLink } from '../data/content'
+import { InstagramIcon, MailIcon, PhoneIcon, PinIcon } from './Icons'
 
 const initial = { name: '', phone: '', email: '', service: '', location: '', message: '' }
 
@@ -73,17 +74,36 @@ export default function Contact() {
           <p>Share a few details about your project and we&apos;ll get back to you to schedule a free, no-obligation consultation.</p>
 
           <ul className="contact-details">
-            <li><span className="ci-label">Phone</span><a href={site.phoneHref}>{site.phoneDisplay}</a></li>
-            <li><span className="ci-label">Email</span><a href={`mailto:${site.email}`}>{site.email}</a></li>
-            <li><span className="ci-label">Studio</span><span>{site.address}</span></li>
-            <li><span className="ci-label">Hours</span><span>{site.hours}</span></li>
+            <li>
+              <span className="ci-icon"><PhoneIcon /></span>
+              <span className="ci-text">
+                <span className="ci-label">Call / WhatsApp</span>
+                <a href={site.phoneHref}>{site.phoneDisplay}</a>
+                <a href={site.altPhoneHref} className="ci-alt">{site.altPhoneDisplay}</a>
+              </span>
+            </li>
+            <li>
+              <span className="ci-icon"><MailIcon /></span>
+              <span className="ci-text">
+                <span className="ci-label">Email</span>
+                <a href={`mailto:${site.email}`}>{site.email}</a>
+              </span>
+            </li>
+            <li>
+              <span className="ci-icon"><PinIcon /></span>
+              <span className="ci-text">
+                <span className="ci-label">Studio</span>
+                <a href={site.mapUrl} target="_blank" rel="noopener noreferrer">{site.address}</a>
+              </span>
+            </li>
+            <li>
+              <span className="ci-icon"><InstagramIcon /></span>
+              <span className="ci-text">
+                <span className="ci-label">Instagram</span>
+                <a href={site.instagram.href} target="_blank" rel="noopener noreferrer">{site.instagram.handle}</a>
+              </span>
+            </li>
           </ul>
-
-          <div className="contact-socials">
-            {site.socials.map((s) => (
-              <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer">{s.label}</a>
-            ))}
-          </div>
 
           <a href={whatsappLink()} className="btn btn-whatsapp" target="_blank" rel="noopener noreferrer">
             Chat on WhatsApp
@@ -132,6 +152,19 @@ export default function Contact() {
           )}
         </Reveal>
       </div>
+
+      <Reveal className="container contact-map">
+        <iframe
+          title={`Map showing ${site.name} studio in ${site.address}`}
+          src={site.mapEmbed}
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
+        <a href={site.mapUrl} target="_blank" rel="noopener noreferrer" className="map-chip">
+          <PinIcon size={18} />
+          <span><strong>{site.address}</strong>Get directions →</span>
+        </a>
+      </Reveal>
     </section>
   )
 }

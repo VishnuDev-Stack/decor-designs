@@ -16,21 +16,24 @@ export const images = {
   bathroom: img('bathroom'),
 }
 
-// TODO: replace the placeholders below with the real business details.
+const GEO = '12.324209,75.085317' // Kuttikol studio
+
 export const site = {
   name: 'Decor Designs Interio',
   tagline: 'Transforming Spaces Into Timeless Living.',
-  phoneDisplay: '+91 XXXXX XXXXX',
-  phoneHref: 'tel:+910000000000',
-  whatsappNumber: '910000000000', // country code + number, digits only
-  email: 'hello@decordesigns.com',
-  address: 'Your City, India',
-  hours: 'Mon – Sat, 10:00 AM – 7:00 PM',
-  socials: [
-    { label: 'Instagram', href: '#' },
-    { label: 'Facebook', href: '#' },
-    { label: 'Pinterest', href: '#' },
-  ],
+  phoneDisplay: '+91 75101 84005', // also the WhatsApp number
+  phoneHref: 'tel:+917510184005',
+  altPhoneDisplay: '+91 80868 17578',
+  altPhoneHref: 'tel:+918086817578',
+  whatsappNumber: '917510184005', // country code + number, digits only
+  email: 'decordesignsds@gmail.com',
+  address: 'Kuttikol, Kasaragod, Kerala',
+  mapUrl: `https://www.google.com/maps/search/?api=1&query=${GEO}`,
+  mapEmbed: `https://www.google.com/maps?q=${GEO}&z=14&output=embed`,
+  instagram: {
+    handle: '@decor_designs_interio',
+    href: 'https://www.instagram.com/decor_designs_interio/',
+  },
 }
 
 export const whatsappLink = (text = '') =>

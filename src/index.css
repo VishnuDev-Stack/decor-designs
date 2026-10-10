@@ -1,14 +1,14 @@
 /* =================================================================
    Decor Designs Interio — global styles
-   Palette: charcoal #121212, warm white #F9F7F3, beige #D6C9B7, gold #c5a059
+   Palette: charcoal #1a1714, warm white #F9F7F3, beige #D6C9B7, gold #c5a059
    Fonts: Cormorant Garamond (headings), Jost (body)
    ================================================================= */
 
 /* ---------- Design tokens ---------- */
 :root {
-  --charcoal: #121212;
-  --charcoal-soft: #1c1c1c;
-  --ink: #0c0c0c;
+  --charcoal: #1a1714;
+  --charcoal-soft: #24201c;
+  --ink: #12100d;
   --warm-white: #F9F7F3;
   --beige: #D6C9B7;
   --beige-soft: #EDE6DB;
@@ -248,8 +248,8 @@ h3 { font-size: 1.5rem; }
 .hero-overlay {
   position: absolute; inset: 0;
   background:
-    linear-gradient(90deg, rgba(10,10,10,0.82) 0%, rgba(10,10,10,0.35) 60%, rgba(10,10,10,0.5) 100%),
-    linear-gradient(to top, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0) 40%);
+    linear-gradient(90deg, rgba(16,14,11,0.82) 0%, rgba(16,14,11,0.35) 60%, rgba(16,14,11,0.5) 100%),
+    linear-gradient(to top, rgba(16,14,11,0.85) 0%, rgba(16,14,11,0) 40%);
 }
 .eyebrow-line { display: inline-block; width: 38px; height: 1px; background: var(--gold); vertical-align: middle; margin-right: 14px; }
 .hero-trust { display: flex; flex-wrap: wrap; gap: 10px 26px; margin-top: 44px; padding-top: 26px; border-top: 1px solid rgba(249,247,243,0.15); }
@@ -573,7 +573,7 @@ h3 { font-size: 1.5rem; }
 .tst-media::after {
   content: "";
   position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(12,12,12,0.55), rgba(12,12,12,0) 45%);
+  background: linear-gradient(to top, rgba(18,16,13,0.55), rgba(18,16,13,0) 45%);
 }
 .tst-tag {
   position: absolute; left: 24px; bottom: 22px; z-index: 1;
@@ -582,7 +582,7 @@ h3 { font-size: 1.5rem; }
   padding: 8px 16px;
   border: 1px solid rgba(243,224,152,0.55);
   border-radius: 40px;
-  background: rgba(12,12,12,0.35);
+  background: rgba(18,16,13,0.35);
   backdrop-filter: blur(6px);
 }
 
@@ -676,15 +676,52 @@ h3 { font-size: 1.5rem; }
 
 /* ---------- Contact ---------- */
 .contact {
-  background: linear-gradient(rgba(12,12,12,0.88), rgba(12,12,12,0.93)),
+  background: linear-gradient(rgba(18,16,13,0.88), rgba(18,16,13,0.93)),
     url("/images/living-alt-sm.webp") center/cover no-repeat;
   color: var(--warm-white);
 }
 .contact-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 64px; align-items: start; }
 .contact-info h2 { color: var(--warm-white); margin: 14px 0 22px; }
 .contact-info > p { color: rgba(249,247,243,0.72); margin-bottom: 30px; }
-.contact-details { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-bottom: 30px; }
-.contact-details li { display: flex; flex-direction: column; gap: 2px; }
+.contact-details { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 22px; margin-bottom: 30px; }
+.contact-details li { display: flex; align-items: flex-start; gap: 14px; }
+.ci-icon {
+  flex-shrink: 0;
+  width: 44px; height: 44px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(197,160,89,0.45);
+  color: var(--gold);
+  background: rgba(197,160,89,0.08);
+}
+.ci-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.contact-details .ci-alt { color: rgba(249,247,243,0.7); font-size: 0.92rem; }
+
+.contact-map { position: relative; margin-top: 64px; }
+.contact-map iframe {
+  display: block;
+  width: 100%; height: 340px;
+  border: 0;
+  border-radius: var(--radius-lg);
+  filter: grayscale(0.35) contrast(1.05);
+  box-shadow: var(--shadow-lg);
+  background: var(--charcoal-soft);
+}
+.map-chip {
+  position: absolute; left: 44px; top: 20px;
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 20px 12px 16px;
+  border-radius: 14px;
+  background: var(--charcoal);
+  color: var(--gold);
+  border: 1px solid rgba(197,160,89,0.4);
+  box-shadow: var(--shadow-md);
+  transition: transform 0.3s var(--ease);
+}
+.map-chip:hover { transform: translateY(-2px); }
+.map-chip span { display: flex; flex-direction: column; line-height: 1.3; font-size: 0.78rem; letter-spacing: 0.06em; }
+.map-chip strong { font-family: var(--font-head); font-size: 1.1rem; font-weight: 600; letter-spacing: 0; color: var(--warm-white); }
+.social-btn { display: inline-flex !important; align-items: center; gap: 10px; text-transform: none !important; letter-spacing: 0.02em !important; font-size: 0.92rem !important; }
 .ci-label { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
 .contact-details a, .contact-details span:not(.ci-label) { font-size: 0.98rem; color: var(--warm-white); }
 .contact-details a:hover { color: var(--gold); }
@@ -907,7 +944,7 @@ h3 { font-size: 1.5rem; }
   /* Hero */
   .hero { min-height: 100svh; padding: calc(var(--nav-h) + 40px) 20px 90px; align-items: flex-end; }
   .hero-overlay {
-    background: linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.6) 45%, rgba(10,10,10,0.35) 100%);
+    background: linear-gradient(to top, rgba(16,14,11,0.95) 0%, rgba(16,14,11,0.6) 45%, rgba(16,14,11,0.35) 100%);
   }
   .hero h1 { font-size: clamp(2.7rem, 12.2vw, 3.5rem); margin: 18px 0 18px; }
   .hero-sub { font-size: 1rem; line-height: 1.65; }
@@ -1018,12 +1055,16 @@ h3 { font-size: 1.5rem; }
   .cta-actions .btn { width: 100%; }
 
   /* Contact */
-  .contact-details { grid-template-columns: 1fr 1fr; gap: 18px; }
+  .contact-details { grid-template-columns: 1fr; gap: 18px; }
   .two-col { grid-template-columns: 1fr; }
   .contact-form { padding: 28px 20px; gap: 16px; }
   .form-title { font-size: 1.6rem; }
   .field input, .field select, .field textarea { font-size: 16px; } /* prevents iOS zoom on focus */
   .btn-whatsapp { width: 100%; }
+  .contact-map { margin-top: 44px; padding: 0 20px; }
+  .contact-map iframe { height: 260px; border-radius: 14px; }
+  .map-chip { left: 32px; right: 32px; top: 12px; }
+  .ci-icon { width: 40px; height: 40px; }
 
   /* Footer */
   .footer { padding-top: 56px; }
@@ -1040,7 +1081,7 @@ h3 { font-size: 1.5rem; }
     position: fixed;
     left: 0; right: 0; bottom: 0;
     z-index: 950;
-    background: rgba(12,12,12,0.97);
+    background: rgba(18,16,13,0.97);
     border-top: 1px solid rgba(197,160,89,0.3);
     padding-bottom: env(safe-area-inset-bottom);
     box-shadow: 0 -8px 24px rgba(0,0,0,0.25);

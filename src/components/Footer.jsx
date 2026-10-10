@@ -1,5 +1,6 @@
 import Logo from './Logo'
-import { navLinks, services, site } from '../data/content'
+import { navLinks, services, site, whatsappLink } from '../data/content'
+import { InstagramIcon } from './Icons'
 
 const year = new Date().getFullYear()
 
@@ -11,9 +12,9 @@ export default function Footer() {
           <Logo size="lg" />
           <p className="footer-tagline">{site.tagline}</p>
           <div className="footer-socials">
-            {site.socials.map((s) => (
-              <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer">{s.label}</a>
-            ))}
+            <a href={site.instagram.href} target="_blank" rel="noopener noreferrer" className="social-btn" aria-label="Instagram">
+              <InstagramIcon size={18} /> {site.instagram.handle}
+            </a>
           </div>
         </div>
         <div className="footer-col">
@@ -27,9 +28,10 @@ export default function Footer() {
         <div className="footer-col">
           <h4>Contact</h4>
           <a href={site.phoneHref}>{site.phoneDisplay}</a>
+          <a href={site.altPhoneHref}>{site.altPhoneDisplay}</a>
+          <a href={whatsappLink()} target="_blank" rel="noopener noreferrer">WhatsApp Chat</a>
           <a href={`mailto:${site.email}`}>{site.email}</a>
-          <span>{site.address}</span>
-          <span>{site.hours}</span>
+          <a href={site.mapUrl} target="_blank" rel="noopener noreferrer">{site.address}</a>
         </div>
       </div>
       <div className="footer-bottom">
